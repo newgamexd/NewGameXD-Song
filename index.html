@@ -1,28 +1,68 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>Random YouTube Playlist</title>
+<style>
+body{
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#000;
+}
+</style>
+</head>
 <body>
 
+<div id="player"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
 <script>
-const videos = [
-  "SSkL-n8zZ2U",
-  "0B9gzAYCK50",
-  "UQh7eFnmhpA",
-  "3IBJG2SuQHE",
-  "iis9u-e9Fbo",
-  "0LIdlmPmH4A"
-];
+let player;
 
-const randomId = videos[Math.floor(Math.random() * videos.length)];
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        width: '800',
+        height: '450',
+        playerVars: {
+            listType: 'playlist',
+            list: 'TLGGr7HcKUqn76swNzA2MjAyNg',
+            autoplay: 1,
+            rel: 0
+        },
+        events: {
+            onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange
+        }
+    });
+}
 
-document.write(`
-<iframe
-  width="1"
-  height="1"
-  frameborder="0"
-  allow="autoplay"
-  src="https://www.youtube.com/embed/${randomId}?autoplay=1">
-</iframe>
-`);
+function onPlayerReady(event) {
+    event.target.setShuffle(true);
+
+    setTimeout(() => {
+        const playlist = player.getPlaylist();
+
+        if (playlist && playlist.length > 0) {
+            const randomIndex = Math.floor(Math.random() * playlist.length);
+            player.playVideoAt(randomIndex);
+        }
+    }, 1500);
+}
+
+function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
+        const playlist = player.getPlaylist();
+
+        if (playlist && playlist.length > 0) {
+            const randomIndex = Math.floor(Math.random() * playlist.length);
+            player.playVideoAt(randomIndex);
+        }
+    }
+}
 </script>
 
 </body>
