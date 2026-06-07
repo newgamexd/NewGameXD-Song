@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-<link rel="preconnect" href="https://www.youtube.com">
-<link rel="preconnect" href="https://www.googlevideo.com">
-<link rel="preconnect" href="https://i.ytimg.com">
-</head>
 <body>
+
+<iframe
+  id="player"
+  width="1"
+  height="1"
+  style="border:0;"
+  allow="autoplay"
+></iframe>
 
 <script>
 const videos = [
@@ -17,16 +20,12 @@ const videos = [
   "0LIdlmPmH4A"
 ];
 
-const video = videos[Math.floor(Math.random() * videos.length)];
+window.onload = () => {
+  const id = videos[Math.floor(Math.random() * videos.length)];
 
-document.body.innerHTML =
-  `<iframe
-      width="1"
-      height="1"
-      frameborder="0"
-      allow="autoplay"
-      src="https://www.youtube.com/embed/${video}?autoplay=1&mute=1">
-   </iframe>`;
+  document.getElementById("player").src =
+    `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&playsinline=1`;
+};
 </script>
 
 </body>
