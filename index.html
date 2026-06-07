@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://www.googlevideo.com">
+<link rel="preconnect" href="https://i.ytimg.com">
+</head>
+<body>
+
+<script>
+const videos = [
+  "SSkL-n8zZ2U",
+  "0B9gzAYCK50",
+  "UQh7eFnmhpA",
+  "3IBJG2SuQHE",
+  "iis9u-e9Fbo",
+  "0LIdlmPmH4A"
+];
+
+const video = videos[Math.floor(Math.random() * videos.length)];
+
+document.body.innerHTML =
+  `<iframe
+      width="1"
+      height="1"
+      frameborder="0"
+      allow="autoplay"
+      src="https://www.youtube.com/embed/${video}?autoplay=1&mute=1">
+   </iframe>`;
+</script>
+
+</body>
+</html>
