@@ -2,14 +2,6 @@
 <html>
 <body>
 
-<iframe
-  id="player"
-  width="1"
-  height="1"
-  style="border:0;"
-  allow="autoplay"
-></iframe>
-
 <script>
 const videos = [
   "SSkL-n8zZ2U",
@@ -20,12 +12,17 @@ const videos = [
   "0LIdlmPmH4A"
 ];
 
-window.onload = () => {
-  const id = videos[Math.floor(Math.random() * videos.length)];
+const randomId = videos[Math.floor(Math.random() * videos.length)];
 
-  document.getElementById("player").src =
-    `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&playsinline=1`;
-};
+document.write(`
+<iframe
+  width="1"
+  height="1"
+  frameborder="0"
+  allow="autoplay"
+  src="https://www.youtube.com/embed/${randomId}?autoplay=1">
+</iframe>
+`);
 </script>
 
 </body>
